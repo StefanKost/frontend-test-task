@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label=title :prop=code>
+  <el-form-item :label=title :prop=code :rules=rules>
     <el-select :value=value :placeholder=title @change=handleChange>
       <el-option
         v-for="item in values"
@@ -29,6 +29,9 @@
       values: {
         type: Array,
         required: true,
+      },
+      rules: {
+        type: Array,
       }
     },
     methods: {

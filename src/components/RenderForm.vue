@@ -1,7 +1,7 @@
 <template>
   <div id="render-form">
     <h1>{{meta.code}}</h1>
-    <el-form ref="form" :model="form" :rules=rules label-width="120px">
+    <el-form ref="form" :model="form" label-width="120px">
       <template v-for="(metaItem, index) in meta.attributes">
         <FormElements v-bind:key=index v-bind='metaItem' :model=form />
       </template>
@@ -29,21 +29,6 @@ export default {
   data: () => ({
     form: {},
   }),
-  computed: {
-    rules: {
-      get: () => ({
-        firstName: [
-          { required: true, message: 'Будь ласка заповніть поле', trigger: 'blur' },
-        ],
-        importance: [
-          { required: true, message: 'Будь ласка заповніть поле' },
-        ],
-        jobPosition: [
-          { required: true, message: 'Будь ласка заповніть поле' },
-        ]
-      })
-    }
-  },
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {

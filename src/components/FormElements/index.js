@@ -4,6 +4,7 @@ import InputNumber from './InputNumber.vue';
 import Enum from './Enum/index';
 import Date from './Date.vue';
 import Boolean from './Boolean.vue';
+import normalizeValidation from '../../utils/normalizeValidation';
 
 const mapTypes = {
   'string': InputText,
@@ -36,6 +37,9 @@ export default {
     },
     enumType: {
       type: String,
+    },
+    validation: {
+      type: Object,
     }
   },
   render: function (createElement, { props }) {
@@ -45,6 +49,10 @@ export default {
     const additionalProps = {};
     if (type === 'enum') {
       additionalProps.type = props.enumType || '';
+    }
+
+    if (props.validation) {
+      additionalProps.rules = normalizeValidation(props.validation);
     }
 
     return createElement(element, {

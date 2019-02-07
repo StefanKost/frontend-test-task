@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label=title :prop=code>
+  <el-form-item :label=title :prop=code :rules=rules>
     <el-checkbox :value=value @input=handleInput></el-checkbox>
   </el-form-item>
 </template>
@@ -19,6 +19,9 @@
       value: {
         type: Boolean,
       },
+      rules: {
+        type: Array,
+      }
     },
     methods: {
       handleInput(data) {

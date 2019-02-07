@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label=title :prop=code>
+  <el-form-item :label=title :prop=code :rules=rules>
     <el-date-picker
       :value=value
       type="date"
@@ -23,6 +23,9 @@
       },
       value: {
         type: Date,
+      },
+      rules: {
+        type: Array,
       }
     },
     methods: {

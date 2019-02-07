@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label=title :prop=code>
+  <el-form-item :label=title :prop=code :rules=rules>
     <el-input-number :value=value @input=handleInput></el-input-number>
   </el-form-item>
 </template>
@@ -19,6 +19,9 @@
       value: {
         type: Number,
       },
+      rules: {
+        type: Array,
+      }
     },
     methods: {
       handleInput(data) {

@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label=title :prop=code>
+  <el-form-item :label=title :prop=code :rules=rules>
     <el-cascader
       :placeholder=title
       :options="options"
@@ -45,7 +45,10 @@
       values: {
         type: Array,
         required: true,
-      }
+      },
+      rules: {
+        type: Array
+      },
     },
     data: () => ({
       value: [],

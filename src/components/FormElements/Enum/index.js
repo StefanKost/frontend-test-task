@@ -22,10 +22,13 @@ export default {
     },
     value: {
       type: [Array, String, Number]
+    },
+    rules: {
+      type: Array,
     }
   },
   render(createElement, { props, listeners }) {
-    const { type, value, title, code } = props;
+    const { type, value, title, code, rules } = props;
     const values = enumTypes[type];
 
     const hierarchy = isHierarchy(values);
@@ -33,7 +36,7 @@ export default {
 
     return createElement(element, {
       props: {
-        title, code, value, values,
+        title, code, value, values, rules,
       },
       on: listeners,
     });

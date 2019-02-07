@@ -5,6 +5,7 @@ import Enum from './Enum/index';
 import Date from './Date.vue';
 import Boolean from './Boolean.vue';
 import normalizeValidation from '../../utils/normalizeValidation';
+import Multiple from './Multiple/index';
 
 const mapTypes = {
   'string': InputText,
@@ -19,40 +20,55 @@ export default {
   name: 'FormElement',
   functional: true,
   props: {
-    title: {
-      type: String,
+    meta: {
+      type: Object,
       required: true,
-    },
-    code: {
-      type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      default: 'string',
     },
     model: {
       type: Object,
       required: true,
     },
-    enumType: {
-      type: String,
-    },
-    validation: {
-      type: Object,
-    }
   },
-  render: function (createElement, { props }) {
+  render: function (createElement, { props: { meta, model } }) {
 
-    const { type, model, title, code } = props;
+    const { type = 'string', title, code } = meta;
     const element = mapTypes[type];
     const additionalProps = {};
     if (type === 'enum') {
-      additionalProps.type = props.enumType || '';
+      additionalProps.type = meta.enumType || '';
+      additionalProps.isMultiple = !!meta.multiple;
     }
 
-    if (props.validation) {
-      additionalProps.rules = normalizeValidation(props.validation);
+    if (['int', 'float'].includes(type)) {
+      additionalProps.isFloat = type === 'float';
+    }
+
+    if (meta.validation) {
+      additionalProps.rules = normalizeValidation(meta.validation);
+    }
+
+    if (meta.multiple && type !== 'enum') {
+      return createElement(Multiple, {
+        props: {
+          title, code, value: model[code], ...additionalProps, type,
+        },
+        on: {
+          'change:data': (data) => {
+            if (Array.isArray(data)) {
+              Vue.set(model, code, data);
+              return;
+            }
+            const { index, value } = data;
+            Vue.set(model[code], index, value);
+          },
+          'delete:data': (index) => {
+            model[code].splice(index, 1);
+            if (!model[code].length) {
+              Vue.set(model, code, undefined);
+            }
+          },
+        },
+      });
     }
 
     return createElement(element, {

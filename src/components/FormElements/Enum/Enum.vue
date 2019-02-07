@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label=title :prop=code :rules=rules>
-    <el-select :value=value :placeholder=title @change=handleChange>
+    <el-select :value=computedValue :placeholder=title :multiple=isMultiple @change=handleChange>
       <el-option
         v-for="item in values"
         :key=item.id
@@ -24,7 +24,7 @@
         required: true,
       },
       value: {
-        type: [Number, String],
+        type: [Number, String, Array],
       },
       values: {
         type: Array,
@@ -32,6 +32,17 @@
       },
       rules: {
         type: Array,
+      },
+      isMultiple: {
+        type: Boolean,
+      }
+    },
+    data: () => ({
+      multipleDefault: [],
+    }),
+    computed: {
+      computedValue() {
+        return this.isMultiple && !Array.isArray(this.value) ? this.multipleDefault : this.value;
       }
     },
     methods: {

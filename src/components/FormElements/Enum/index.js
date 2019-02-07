@@ -25,10 +25,13 @@ export default {
     },
     rules: {
       type: Array,
+    },
+    isMultiple: {
+      type: Boolean,
     }
   },
   render(createElement, { props, listeners }) {
-    const { type, value, title, code, rules } = props;
+    const { type, value, title, code, rules, isMultiple } = props;
     const values = enumTypes[type];
 
     const hierarchy = isHierarchy(values);
@@ -36,7 +39,7 @@ export default {
 
     return createElement(element, {
       props: {
-        title, code, value, values, rules,
+        title, code, value, values, rules, isMultiple,
       },
       on: listeners,
     });

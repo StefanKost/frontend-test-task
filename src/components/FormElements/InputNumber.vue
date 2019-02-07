@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label=title :prop=code :rules=rules>
-    <el-input-number :value=value @input=handleInput></el-input-number>
+    <el-input-number :value=value :precision=getPrecision @input=handleInput></el-input-number>
   </el-form-item>
 </template>
 
@@ -21,7 +21,16 @@
       },
       rules: {
         type: Array,
+      },
+      isFloat: {
+        type: Boolean,
+        required: true,
       }
+    },
+    computed: {
+      getPrecision() {
+        return this.isFloat ? 2 : 0;
+      },
     },
     methods: {
       handleInput(data) {

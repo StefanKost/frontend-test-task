@@ -1,6 +1,6 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-input :value=value @input=handleInput></el-input>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-input :value="value" @input="handleInput" />
   </el-form-item>
 </template>
 

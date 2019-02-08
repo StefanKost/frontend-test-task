@@ -1,12 +1,12 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-checkbox :value=value @input=handleInput></el-checkbox>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-date-picker :value="value" type="date" :placeholder="title" @input=handleInput />
   </el-form-item>
 </template>
 
 <script>
   export default {
-    name: "Boolean",
+    name: "InputDate",
     props: {
       title: {
         type: String,
@@ -17,7 +17,7 @@
         required: true,
       },
       value: {
-        type: Boolean,
+        type: Date,
       },
       rules: {
         type: Array,
@@ -27,6 +27,6 @@
       handleInput(data) {
         this.$emit('change:data', data);
       }
-    }
+    },
   }
 </script>

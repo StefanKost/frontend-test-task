@@ -14,7 +14,7 @@
 
 <script>
 
-import FormElements from './FormElements/index';
+import FormElements from './FormElements';
 import deepClone from '../utils/deepClone';
 export default {
   name: "RenderForm",

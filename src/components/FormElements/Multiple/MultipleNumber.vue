@@ -4,14 +4,14 @@
       v-for="(item, index) in value"
       :label="`${title} ${index + 1}.`"
       :prop="`${code}.${index}`"
-      :key=index
-      :rules=rules
+      :key="index"
+      :rules="rules"
     >
-      <el-input-number style="width: 75%; margin-right: 10px;" :precision=getPrecision :value=item @input="(data) => handleInput(`${index}`)(data)"></el-input-number>
+      <el-input-number style="width: 75%; margin-right: 10px;" :precision="getPrecision" :value="item" @input="(data) => handleInput(`${index}`)(data)" />
       <el-button @click.prevent="removeElement(index)">Delete</el-button>
     </el-form-item>
-    <el-form-item :label=titleAction :prop=code :rules="getRequiredRule">
-      <el-button @click=addElement>Додати {{ title }}</el-button>
+    <el-form-item :label="titleAction" :prop="code" :rules="getRequiredRule">
+      <el-button @click="addElement">Додати {{ title }}</el-button>
     </el-form-item>
   </div>
 </template>

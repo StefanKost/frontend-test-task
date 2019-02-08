@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import InputText from './InputText.vue';
 import InputNumber from './InputNumber.vue';
-import Enum from './Enum/index';
-import Date from './Date.vue';
-import Boolean from './Boolean.vue';
+import Enum from './Enum';
+import InputDate from './InputDate.vue';
+import InputBoolean from './InputBoolean.vue';
 import normalizeValidation from '../../utils/normalizeValidation';
-import Multiple from './Multiple/index';
+import Multiple from './Multiple';
 
 const mapTypes = {
   'string': InputText,
   'int': InputNumber,
   'float': InputNumber,
   'enum': Enum,
-  'date': Date,
-  'boolean': Boolean,
+  'date': InputDate,
+  'boolean': InputBoolean,
 };
 
 export default {

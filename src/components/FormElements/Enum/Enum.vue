@@ -1,12 +1,7 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-select :value=computedValue :placeholder=title :multiple=isMultiple @change=handleChange>
-      <el-option
-        v-for="item in values"
-        :key=item.id
-        :label=item.title
-        :value=item.id>
-      </el-option>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-select :value="computedValue" :placeholder="title" :multiple="isMultiple" @change="handleChange">
+      <el-option v-for="item in values" :key="item.id" :label="item.title" :value="item.id" />
     </el-select>
   </el-form-item>
 </template>

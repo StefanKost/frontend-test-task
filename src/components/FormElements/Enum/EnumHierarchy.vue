@@ -1,12 +1,6 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-cascader
-      :placeholder=title
-      :options="options"
-      filterable
-      :value=value
-      @change=handleChange>
-    ></el-cascader>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-cascader :placeholder="title" :options="options" filterable :value="value" @change="handleChange" />
   </el-form-item>
 </template>
 

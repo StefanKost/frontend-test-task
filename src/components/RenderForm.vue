@@ -2,9 +2,12 @@
   <div>
     <h1>{{meta.code}}</h1>
     <el-form ref="form" :model="form" label-width="120px">
-      <template v-for="(metaItem, index) in meta.attributes">
-        <FormElements :key="index" :meta="metaItem" :model="form" />
-      </template>
+      <FormElement
+        v-for="(metaItem, index) in meta.attributes"
+        :key="index"
+        :meta="metaItem"
+        :model="form"
+      />
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">Submit</el-button>
       </el-form-item>
@@ -14,7 +17,7 @@
 
 <script>
 
-import FormElements from './FormElements';
+import FormElement from './FormElements';
 import deepClone from '../utils/deepClone';
 export default {
   name: "RenderForm",
@@ -25,7 +28,7 @@ export default {
     },
   },
   components: {
-    FormElements,
+    FormElement,
   },
   data: () => ({
     form: {},
@@ -35,10 +38,11 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.info(deepClone(this.form));
-        } else {
-          console.log('error submit!!');
-          return false;
+          return;
         }
+
+        console.log('error submit!!');
+        return false;
       });
     }
   }

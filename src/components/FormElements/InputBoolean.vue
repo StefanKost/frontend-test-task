@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="title" :prop="code" :rules="rules">
-    <el-checkbox :value="value" @input=handleInput />
+    <el-checkbox :value="value" @input="handleInput" />
   </el-form-item>
 </template>
 
@@ -16,12 +16,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: Boolean,
-      },
-      rules: {
-        type: Array,
-      }
+      value: Boolean,
+      rules: Array,
     },
     methods: {
       handleInput(data) {

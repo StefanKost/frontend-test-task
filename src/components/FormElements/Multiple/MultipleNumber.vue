@@ -7,7 +7,7 @@
       :key="index"
       :rules="rules"
     >
-      <el-input-number style="width: 75%; margin-right: 10px;" :precision="getPrecision" :value="item" @input="(data) => handleInput(`${index}`)(data)" />
+      <el-input-number class="multiple-item" :precision="getPrecision" :value="item" @input="(data) => handleInput(index, data)" />
       <el-button @click.prevent="removeElement(index)">Delete</el-button>
     </el-form-item>
     <el-form-item :label="titleAction" :prop="code" :rules="getRequiredRule">
@@ -28,12 +28,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: Array,
-      },
-      rules: {
-        type: Array,
-      },
+      value: Array,
+      rules: Array,
       isFloat: {
         type: Boolean,
         required: true,
@@ -51,16 +47,13 @@
       }
     },
     methods: {
-      handleInput(index) {
-        return (data) => {
-          this.$emit('change:data', { index, value: data });
-        }
+      handleInput(index, data) {
+        this.$emit('change:data', { index, value: data });
       },
       addElement() {
         const data = this.value;
         if (!data || !Array.isArray(data)) {
-          this.$emit('change:data', []);
-          this.$emit('change:data', { index: 0, value: undefined });
+          this.$emit('change:data', [undefined]);
           return;
         }
 
@@ -73,3 +66,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .multiple-item {
+    width: 75%;
+    margin-right: 10px;
+  }
+</style>

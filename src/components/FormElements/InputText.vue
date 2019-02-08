@@ -16,12 +16,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: String,
-      },
-      rules: {
-        type: Array,
-      }
+      value: String,
+      rules: Array,
     },
     methods: {
       handleInput(data) {

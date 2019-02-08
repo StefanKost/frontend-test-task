@@ -16,12 +16,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: Number,
-      },
-      rules: {
-        type: Array,
-      },
+      value: Number,
+      rules: Array,
       isFloat: {
         type: Boolean,
         required: true,

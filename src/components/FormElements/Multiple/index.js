@@ -3,12 +3,22 @@ import MultipleNumber from './MultipleNumber.vue';
 import MultipleDate from './MultipleDate.vue';
 import MultipleBoolean from './MultipleBoolean';
 
+import types from '../../../config/types';
+
+const {
+  STRING,
+  INT,
+  FLOAT,
+  DATE,
+  BOOLEAN,
+} = types;
+
 const mapTypes = {
-  'string': MultipleText,
-  'int': MultipleNumber,
-  'float': MultipleNumber,
-  'date': MultipleDate,
-  'boolean': MultipleBoolean,
+  [STRING]: MultipleText,
+  [INT]: MultipleNumber,
+  [FLOAT]: MultipleNumber,
+  [DATE]: MultipleDate,
+  [BOOLEAN]: MultipleBoolean,
 };
 
 export default {

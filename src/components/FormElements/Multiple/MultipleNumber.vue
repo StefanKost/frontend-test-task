@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-form-item
-      v-for="(item, index) in value"
+      v-for="(item, index) in model"
       :label="`${title} ${index + 1}.`"
       :prop="`${code}.${index}`"
       :key="index"
       :rules="rules"
     >
-      <el-input-number class="multiple-item" :precision="getPrecision" :value="item" @input="(data) => handleInput(index, data)" />
+      <el-input-number class="multiple-item" :precision="getPrecision" v-model="model[index]" />
       <el-button @click.prevent="removeElement(index)">Delete</el-button>
     </el-form-item>
     <el-form-item :label="titleAction" :prop="code" :rules="getRequiredRule">
@@ -35,6 +35,9 @@
         required: true,
       }
     },
+    data: () => ({
+      model: [],
+    }),
     computed: {
       getRequiredRule() {
         return Array.isArray(this.rules) ? this.rules.filter(rule => rule.required) : [];
@@ -47,22 +50,18 @@
       }
     },
     methods: {
-      handleInput(index, data) {
-        this.$emit('change:data', { index, value: data });
-      },
       addElement() {
-        const data = this.value;
-        if (!data || !Array.isArray(data)) {
-          this.$emit('change:data', [undefined]);
-          return;
-        }
-
-        const index = data.length;
-        this.$emit('change:data', { index, value: undefined });
+        this.model.push(undefined);
       },
       removeElement(index) {
-        this.$emit('delete:data', index);
+        this.model.splice(index, 1);
       }
+    },
+    watch: {
+      model(data) {
+        const value = (data.length) ? data : undefined;
+        this.$emit('change:data', value);
+      },
     }
   }
 </script>

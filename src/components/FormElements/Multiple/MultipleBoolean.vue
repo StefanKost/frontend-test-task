@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-form-item
-      v-for="(item, index) in value"
+      v-for="(item, index) in model"
       :key="index"
       :label="`${title} ${index + 1}.`"
       :prop="`${code}.${index}`"
       :rules="rules"
     >
-      <el-checkbox class="multiple-item" :value="item" @input="(data) => handleInput(index, data)" />
+      <el-checkbox class="multiple-item" v-model="model[index]" />
       <el-button @click.prevent="removeElement(index)">Delete</el-button>
     </el-form-item>
     <el-form-item :label="titleAction" :prop="code" :rules="getRequiredRule">
@@ -31,6 +31,9 @@
       value: Array,
       rules: Array,
     },
+    data: () => ({
+      model: [],
+    }),
     computed: {
       getRequiredRule() {
         return Array.isArray(this.rules) ? this.rules.filter(rule => rule.required) : [];
@@ -40,23 +43,19 @@
       }
     },
     methods: {
-      handleInput(index, data) {
-        this.$emit('change:data', { index, value: data });
-      },
       addElement() {
-        const data = this.value;
-        if (!data || !Array.isArray(data)) {
-          this.$emit('change:data', [false]);
-          return;
-        }
-
-        const index = data.length;
-        this.$emit('change:data', { index, value: false });
+        this.model.push(false);
       },
       removeElement(index) {
-        this.$emit('delete:data', index);
+        this.model.splice(index, 1);
       }
-    }
+    },
+    watch: {
+      model(data) {
+        const value = (data.length) ? data : undefined;
+        this.$emit('change:data', value);
+      },
+    },
   }
 </script>
 

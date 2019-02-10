@@ -1,6 +1,6 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-input-number :value=value :precision=getPrecision @input=handleInput></el-input-number>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-input-number :value="value" :precision="getPrecision" @input="handleInput" />
   </el-form-item>
 </template>
 
@@ -16,12 +16,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: Number,
-      },
-      rules: {
-        type: Array,
-      },
+      value: Number,
+      rules: Array,
       isFloat: {
         type: Boolean,
         required: true,

@@ -1,19 +1,29 @@
 import Vue from 'vue';
 import InputText from './InputText.vue';
 import InputNumber from './InputNumber.vue';
-import Enum from './Enum/index';
-import Date from './Date.vue';
-import Boolean from './Boolean.vue';
+import EnumInput from './InputEnum';
+import InputDate from './InputDate.vue';
+import InputBoolean from './InputBoolean.vue';
 import normalizeValidation from '../../utils/normalizeValidation';
-import Multiple from './Multiple/index';
+import Multiple from './Multiple';
+import types from '../../config/types';
+
+const {
+  STRING,
+  INT,
+  FLOAT,
+  ENUM,
+  DATE,
+  BOOLEAN,
+} = types;
 
 const mapTypes = {
-  'string': InputText,
-  'int': InputNumber,
-  'float': InputNumber,
-  'enum': Enum,
-  'date': Date,
-  'boolean': Boolean,
+  [STRING]: InputText,
+  [INT]: InputNumber,
+  [FLOAT]: InputNumber,
+  [ENUM]: EnumInput,
+  [DATE]: InputDate,
+  [BOOLEAN]: InputBoolean,
 };
 
 export default {
@@ -31,23 +41,23 @@ export default {
   },
   render: function (createElement, { props: { meta, model } }) {
 
-    const { type = 'string', title, code } = meta;
+    const { type = STRING, title, code } = meta;
     const element = mapTypes[type];
     const additionalProps = {};
-    if (type === 'enum') {
+    if (type === ENUM) {
       additionalProps.type = meta.enumType || '';
       additionalProps.isMultiple = !!meta.multiple;
     }
 
-    if (['int', 'float'].includes(type)) {
-      additionalProps.isFloat = type === 'float';
+    if ([INT, FLOAT].includes(type)) {
+      additionalProps.isFloat = type === FLOAT;
     }
 
     if (meta.validation) {
       additionalProps.rules = normalizeValidation(meta.validation);
     }
 
-    if (meta.multiple && type !== 'enum') {
+    if (meta.multiple && type !== ENUM) {
       return createElement(Multiple, {
         props: {
           title, code, value: model[code], ...additionalProps, type,

@@ -1,6 +1,6 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-input :value=value @input=handleInput></el-input>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-input :value="value" @input="handleInput" />
   </el-form-item>
 </template>
 
@@ -16,12 +16,8 @@
         type: String,
         required: true,
       },
-      value: {
-        type: String,
-      },
-      rules: {
-        type: Array,
-      }
+      value: String,
+      rules: Array,
     },
     methods: {
       handleInput(data) {

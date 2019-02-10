@@ -1,12 +1,17 @@
 <template>
-  <el-form-item :label=title :prop=code :rules=rules>
-    <el-select :value=computedValue :placeholder=title :multiple=isMultiple @change=handleChange>
+  <el-form-item :label="title" :prop="code" :rules="rules">
+    <el-select
+      :value="computedValue"
+      :placeholder="title"
+      :multiple="isMultiple"
+      @change="handleChange"
+    >
       <el-option
         v-for="item in values"
-        :key=item.id
-        :label=item.title
-        :value=item.id>
-      </el-option>
+        :key="item.id"
+        :label="item.title"
+        :value="item.id"
+      />
     </el-select>
   </el-form-item>
 </template>
@@ -30,12 +35,8 @@
         type: Array,
         required: true,
       },
-      rules: {
-        type: Array,
-      },
-      isMultiple: {
-        type: Boolean,
-      }
+      rules: Array,
+      isMultiple: Boolean,
     },
     data: () => ({
       multipleDefault: [],

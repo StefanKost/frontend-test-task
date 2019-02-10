@@ -5,7 +5,7 @@ import EnumHierarchy from './EnumHierarchy';
 const isHierarchy = (values) => values.some(item => !!item.parentId);
 
 export default {
-  name: 'Enum',
+  name: 'InputEnum',
   functional: true,
   props: {
     title: {

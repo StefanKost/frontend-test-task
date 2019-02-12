@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <RenderForm id="form-container" :meta="meta"/>
+    <RenderForm
+      id="form-container"
+      :meta="meta"
+    />
   </div>
 </template>
 
 <script>
-import RenderForm from './components/RenderForm.vue'
+import RenderForm from './components/RenderForm.vue';
 
 export default {
-  name: 'app',
+  name: 'App',
   data: () => ({
     meta: {
       code: 'Person',
@@ -17,15 +20,15 @@ export default {
           title: 'Ім\'я',
           code: 'firstName',
           validation: {
-            required: true
-          }
+            required: true,
+          },
         },
         {
           title: 'Прізвище',
           code: 'lastName',
           validation: {
-            required: true
-          }
+            required: true,
+          },
         },
         {
           title: 'Вік',
@@ -36,8 +39,8 @@ export default {
           title: 'Email',
           code: 'email',
           validation: {
-            email: true
-          }
+            email: true,
+          },
         },
         {
           title: 'Важливість',
@@ -61,16 +64,16 @@ export default {
           code: 'phone',
           multiple: true,
           validation: {
-            pattern: '^\\+38\\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}'
-          }
-        }
-      ]
-    }
+            pattern: '^\\+38\\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}',
+          },
+        },
+      ],
+    },
   }),
   components: {
     RenderForm,
-  }
-}
+  },
+};
 </script>
 
 <style>

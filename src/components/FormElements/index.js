@@ -39,8 +39,7 @@ export default {
       required: true,
     },
   },
-  render: function (createElement, { props: { meta, model } }) {
-
+  render(createElement, { props: { meta, model } }) {
     const { type = STRING, title, code } = meta;
     let element = mapTypes[type];
     const additionalProps = {};
@@ -72,5 +71,5 @@ export default {
         },
       },
     });
-  }
-}
+  },
+};

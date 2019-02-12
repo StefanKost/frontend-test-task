@@ -1,37 +1,45 @@
 <template>
-  <el-form-item :label="title" :prop="code" :rules="rules">
-    <el-input-number :value="value" :precision="getPrecision" @input="handleInput" />
+  <el-form-item
+    :label="title"
+    :prop="code"
+    :rules="rules"
+  >
+    <el-input-number
+      :value="value"
+      :precision="getPrecision"
+      @input="handleInput"
+    />
   </el-form-item>
 </template>
 
 <script>
-  export default {
-    name: "InputNumber",
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      code: {
-        type: String,
-        required: true,
-      },
-      value: Number,
-      rules: Array,
-      isFloat: {
-        type: Boolean,
-        required: true,
-      }
+export default {
+  name: 'InputNumber',
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-    computed: {
-      getPrecision() {
-        return this.isFloat ? 2 : 0;
-      },
+    code: {
+      type: String,
+      required: true,
     },
-    methods: {
-      handleInput(data) {
-        this.$emit('change:data', data);
-      }
-    }
-  }
+    value: Number,
+    rules: Array,
+    isFloat: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  computed: {
+    getPrecision() {
+      return this.isFloat ? 2 : 0;
+    },
+  },
+  methods: {
+    handleInput(data) {
+      this.$emit('change:data', data);
+    },
+  },
+};
 </script>

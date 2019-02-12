@@ -1,7 +1,7 @@
 import MultipleText from './MultipleText.vue';
 import MultipleNumber from './MultipleNumber.vue';
 import MultipleDate from './MultipleDate.vue';
-import MultipleBoolean from './MultipleBoolean';
+import MultipleBoolean from './MultipleBoolean.vue';
 
 import types from '../../../config/types';
 
@@ -44,13 +44,15 @@ export default {
     },
     isFloat: {
       type: Boolean,
-    }
+    },
   },
   render(createElement, { props, listeners }) {
-    const { type, value, title, code, rules, isFloat } = props;
+    const {
+      type, value, title, code, rules, isFloat,
+    } = props;
 
     const element = mapTypes[type];
-    if (!element) { return; }
+    if (!element) { return undefined; }
 
     return createElement(element, {
       props: {
@@ -58,5 +60,5 @@ export default {
       },
       on: listeners,
     });
-  }
-}
+  },
+};

@@ -24,7 +24,10 @@ export default {
       required: true,
     },
     value: Boolean,
-    rules: Array,
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   methods: {
     handleInput(data) {

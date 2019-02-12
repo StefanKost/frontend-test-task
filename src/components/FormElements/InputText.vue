@@ -23,8 +23,14 @@ export default {
       type: String,
       required: true,
     },
-    value: String,
-    rules: Array,
+    value: {
+      type: String,
+      default: () => (''),
+    },
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   methods: {
     handleInput(data) {

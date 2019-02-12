@@ -26,7 +26,10 @@ export default {
       required: true,
     },
     value: Date,
-    rules: Array,
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   methods: {
     handleInput(data) {

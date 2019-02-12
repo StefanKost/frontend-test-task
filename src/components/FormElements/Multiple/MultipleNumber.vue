@@ -40,8 +40,14 @@ export default {
       type: String,
       required: true,
     },
-    value: Array,
-    rules: Array,
+    value: {
+      type: Array,
+      default: () => ([]),
+    },
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
     isFloat: {
       type: Boolean,
       required: true,
@@ -52,10 +58,10 @@ export default {
   }),
   computed: {
     getRequiredRule() {
-      return Array.isArray(this.rules) ? this.rules.filter(rule => rule.required) : [];
+      return this.rules.filter(rule => rule.required);
     },
     titleAction() {
-      return (!this.value || !this.value.length) && this.title ? this.title : '';
+      return !this.value.length && this.title ? this.title : '';
     },
     getPrecision() {
       return this.isFloat ? 2 : 0;

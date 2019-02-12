@@ -24,8 +24,14 @@ export default {
       type: String,
       required: true,
     },
-    value: Number,
-    rules: Array,
+    value: {
+      type: Number,
+      default: () => (undefined),
+    },
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
     isFloat: {
       type: Boolean,
       required: true,

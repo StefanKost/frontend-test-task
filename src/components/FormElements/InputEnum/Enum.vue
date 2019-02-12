@@ -34,12 +34,16 @@ export default {
     },
     value: {
       type: [Number, String, Array],
+      default: () => (''),
     },
     values: {
       type: Array,
       required: true,
     },
-    rules: Array,
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
     isMultiple: Boolean,
   },
   data: () => ({

@@ -50,7 +50,10 @@ export default {
       type: Array,
       required: true,
     },
-    rules: Array,
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data: () => ({
     value: [],

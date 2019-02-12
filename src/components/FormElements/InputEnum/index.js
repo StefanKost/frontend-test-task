@@ -1,8 +1,8 @@
 import enumTypes from '../../../config/enumTypes';
-import Enum from './Enum';
-import EnumHierarchy from './EnumHierarchy';
+import Enum from './Enum.vue';
+import EnumHierarchy from './EnumHierarchy.vue';
 
-const isHierarchy = (values) => values.some(item => !!item.parentId);
+const isHierarchy = values => values.some(item => !!item.parentId);
 
 export default {
   name: 'InputEnum',
@@ -21,17 +21,19 @@ export default {
       default: 'string',
     },
     value: {
-      type: [Array, String, Number]
+      type: [Array, String, Number],
     },
     rules: {
       type: Array,
     },
     isMultiple: {
       type: Boolean,
-    }
+    },
   },
   render(createElement, { props, listeners }) {
-    const { type, value, title, code, rules, isMultiple } = props;
+    const {
+      type, value, title, code, rules, isMultiple,
+    } = props;
     const values = enumTypes[type];
 
     const hierarchy = isHierarchy(values);
@@ -43,6 +45,5 @@ export default {
       },
       on: listeners,
     });
-
-  }
-}
+  },
+};

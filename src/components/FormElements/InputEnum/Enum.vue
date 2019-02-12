@@ -1,5 +1,9 @@
 <template>
-  <el-form-item :label="title" :prop="code" :rules="rules">
+  <el-form-item
+    :label="title"
+    :prop="code"
+    :rules="rules"
+  >
     <el-select
       :value="computedValue"
       :placeholder="title"
@@ -17,39 +21,43 @@
 </template>
 
 <script>
-  export default {
-    name: "Enum",
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      code: {
-        type: String,
-        required: true,
-      },
-      value: {
-        type: [Number, String, Array],
-      },
-      values: {
-        type: Array,
-        required: true,
-      },
-      rules: Array,
-      isMultiple: Boolean,
+export default {
+  name: 'Enum',
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-    data: () => ({
-      multipleDefault: [],
-    }),
-    computed: {
-      computedValue() {
-        return this.isMultiple && !Array.isArray(this.value) ? this.multipleDefault : this.value;
-      }
+    code: {
+      type: String,
+      required: true,
     },
-    methods: {
-      handleChange(data) {
-        this.$emit('change:data', data);
-      }
-    }
-  }
+    value: {
+      type: [Number, String, Array],
+      default: () => (''),
+    },
+    values: {
+      type: Array,
+      required: true,
+    },
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
+    isMultiple: Boolean,
+  },
+  data: () => ({
+    multipleDefault: [],
+  }),
+  computed: {
+    computedValue() {
+      return this.isMultiple && !Array.isArray(this.value) ? this.multipleDefault : this.value;
+    },
+  },
+  methods: {
+    handleChange(data) {
+      this.$emit('change:data', data);
+    },
+  },
+};
 </script>

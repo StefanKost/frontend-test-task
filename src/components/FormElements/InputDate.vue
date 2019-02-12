@@ -1,28 +1,40 @@
 <template>
-  <el-form-item :label="title" :prop="code" :rules="rules">
-    <el-date-picker :value="value" type="date" :placeholder="title" @input="handleInput" />
+  <el-form-item
+    :label="title"
+    :prop="code"
+    :rules="rules"
+  >
+    <el-date-picker
+      :value="value"
+      type="date"
+      :placeholder="title"
+      @input="handleInput"
+    />
   </el-form-item>
 </template>
 
 <script>
-  export default {
-    name: "InputDate",
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      code: {
-        type: String,
-        required: true,
-      },
-      value: Date,
-      rules: Array,
+export default {
+  name: 'InputDate',
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-    methods: {
-      handleInput(data) {
-        this.$emit('change:data', data);
-      }
+    code: {
+      type: String,
+      required: true,
     },
-  }
+    value: Date,
+    rules: {
+      type: Array,
+      default: () => ([]),
+    },
+  },
+  methods: {
+    handleInput(data) {
+      this.$emit('change:data', data);
+    },
+  },
+};
 </script>
